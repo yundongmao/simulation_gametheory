@@ -9,8 +9,12 @@ public class GameWorker implements Runnable {
     @Override
     public void run() {
 //        Setting setting = SettingHandle.readSetting();
-        for (int i = 0; i < 100; i++) {
-            SettingHandle.readSetting();
+        while (true) {
+            Setting setting = SettingHandle.readSetting();
+            if(setting == null){
+                    break;
+            }
+            setting.runTest();
         }
     }
 
