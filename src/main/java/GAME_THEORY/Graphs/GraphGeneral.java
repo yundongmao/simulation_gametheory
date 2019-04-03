@@ -32,6 +32,8 @@ public class GraphGeneral extends Graph {
     }
     private Set<Integer> mutantSet;
     private Set<Integer> normalSet;
+
+
     private List<List<Double>> adjaMatrix;
     private Random random = new Random(System.currentTimeMillis());
     @Override
@@ -69,5 +71,15 @@ public class GraphGeneral extends Graph {
     @Override
     public boolean isSuccess() {
         return mutantSet.size()==N?true:false;
+    }
+
+
+
+    public List<List<Double>> getAdjaMatrix() {
+        return adjaMatrix;
+    }
+
+    public void setAdjaMatrix(List<List<Double>> adjaMatrix) {
+        this.adjaMatrix = adjaMatrix;
     }
 }
