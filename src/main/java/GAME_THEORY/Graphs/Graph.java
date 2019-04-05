@@ -1,5 +1,11 @@
 package GAME_THEORY.Graphs;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Graph{
 
     public Graph(int _initMutantNum,double _reward,int _size){
@@ -9,7 +15,24 @@ public abstract class Graph{
         N = _size;
     }
 
+    public int getInitMutantNum() {
+        return initMutantNum;
+    }
+
+    public void setInitMutantNum(int initMutantNum) {
+        this.initMutantNum = initMutantNum;
+    }
+
     protected int initMutantNum = 1;
+
+    public double getR() {
+        return r;
+    }
+
+    public void setR(double r) {
+        this.r = r;
+    }
+
     //default we suppose the mutant number is only one
     //i is the mutant number
     protected int i = 1;
@@ -48,4 +71,7 @@ public abstract class Graph{
     public void setReward(double reward) {
         this.r = reward;
     }
+
+    public abstract String toJSONString();
+
 }

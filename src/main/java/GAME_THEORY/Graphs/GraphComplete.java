@@ -51,4 +51,9 @@ public class GraphComplete extends Graph {
     public boolean isSuccess() {
         return false;
     }
+
+    @Override
+    public String toJSONString() {
+        return null;
+    }
 }

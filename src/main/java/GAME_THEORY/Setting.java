@@ -8,6 +8,15 @@ public class Setting {
 
     private Graph graph;
     private int testTimes;
+
+    public int getSuccessTimes() {
+        return successTimes;
+    }
+
+    public void setSuccessTimes(int successTimes) {
+        this.successTimes = successTimes;
+    }
+
     private int successTimes;
 
 
@@ -20,6 +29,7 @@ public class Setting {
     }
     public void runTest(){
         for(int i=0;i<testTimes;i++){
+            System.out.println(""+i+"th test");
             runOneTest();
         }
     }
@@ -27,8 +37,9 @@ public class Setting {
     public void runOneTest(){
         graph.reinit();
         while(true){
-            if(!graph.update()){
-                successTimes = graph.isSuccess()?successTimes+1:successTimes ;
+            if(graph.update()){
+                successTimes = graph.isSuccess()?successTimes+1:successTimes;
+                break;
             }
         }
     }

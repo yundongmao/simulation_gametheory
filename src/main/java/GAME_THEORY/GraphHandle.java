@@ -23,9 +23,23 @@ public class GraphHandle {
         List<List<Double>> adjaMatrix = new ArrayList<>();
         for(int j =0;j<N;j++){
             List<Double> tempList = new ArrayList<>();
+            double rowsum = 0;
             for(int k =0;k<N;k++){
-                tempList.add(random.nextDouble()<=p?1.0:0.0);
+                if(k==j){
+                    tempList.add(0.0);
+                }else{
+                    tempList.add(random.nextDouble()<=p?1.0:0.0);
+                    rowsum+= tempList.get(k);
+                }
             }
+            if(rowsum == 0){
+                tempList.set(j,1.0);
+                rowsum = 1.0;
+            }
+            for(int k =0;k<N;k++){
+                tempList.set(k,tempList.get(k)/rowsum);
+            }
+
             adjaMatrix.add(tempList);
         }
         Graph graph = new GraphGeneral(mutantnum,reward,N,adjaMatrix);

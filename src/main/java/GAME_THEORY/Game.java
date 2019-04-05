@@ -5,20 +5,20 @@ import java.util.Random;
 
 public class Game {
     public static void main(String[] args) {
-        SettingHandle.initAllSetting("setting.txt");
-        System.out.println("hello");
-        GameWorker gameWorker1 = new GameWorker("work_1");
-        gameWorker1.start();
-        GameWorker gameWorker2 = new GameWorker("work_2");
-        gameWorker2.start();
+//        SettingHandle.initAllSetting("setting.txt");
+//        System.out.println("hello");
+//        GameWorker gameWorker1 = new GameWorker("work_1");
+//        gameWorker1.start();
+//        GameWorker gameWorker2 = new GameWorker("work_2");
+//        gameWorker2.start();
 
-//        sampleGameTest();
+        sampleGameTest();
     }
 
     public static void sampleGameTest() {
         int i = 1;//mutant number
         double r = 2.0;//reward
-        int N = 2;//total number of the node
+        int N = 10;//total number of the node
         int testTimes = 100;
         int success = 0;
         int fail = 0;
