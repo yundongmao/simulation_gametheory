@@ -23,7 +23,7 @@ public class RandomUtil {
 
     }
 
-    public static Object RandomChooseFromSet(Set set){
+    public static Object randomChooseFromSet(Set set){
         int item = random.nextInt(set.size());
         int i = 0;
         for(Object obj : set)
@@ -34,5 +34,31 @@ public class RandomUtil {
         }
         //won't come here
         return null;
+    }
+
+    public static int randomChooseIndexDepValue(double[] list){
+        double temp = random.nextDouble();
+        double sum = 0.0;
+        for(double d : list){
+            sum+=d;
+        }
+        double tempsum = 0;
+        for(int i=0;i<list.length;i++){
+            tempsum+=list[i];
+            if(temp<=tempsum/sum){
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public static void normaliseList(double[] list){
+        double sum = 0;
+        for(double d:list){
+            sum+=d;
+        }
+        for(int i =0;i<list.length;i++){
+            list[i] = list[i]/sum;
+        }
     }
 }

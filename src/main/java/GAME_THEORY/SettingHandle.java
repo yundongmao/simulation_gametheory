@@ -42,7 +42,10 @@ public class SettingHandle {
     }
 
     public static void main(String[] args) {
-        Graph graph= GraphHandle.generateErdoRandomGraph(0.9,10,1,2.0);
+        Graph graph = null;
+//        graph= GraphHandle.generateErdoRandomGraph(0.9,10,1,2.0);
+//        graph= GraphHandle.generateWattsStrogatzGraph(10,4,0.5,1,2.0);
+        graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
         System.out.println(((GraphGeneral)graph).getAdjaMatrix());
         Setting setting = new Setting(graph,10);
         System.out.println("simulation start");

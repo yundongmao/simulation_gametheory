@@ -47,20 +47,20 @@ public class GraphGeneral extends Graph {
         if (temp < i * r / (i * r + N - i)) {
 //            System.out.println("choose mutant to reproduce");
             //decide which mutant to reproduce randomly
-            int reproNode = (int) RandomUtil.RandomChooseFromSet(mutantSet);
+            int reproNode = (int) RandomUtil.randomChooseFromSet(mutantSet);
             int deadNode = RandomUtil.randomNeighborFromList(reproNode, adjaMatrix.get(reproNode));
             if (!mutantSet.contains(deadNode)) {
-                System.out.println("i++");
+//                System.out.println("i++");
                 i++;
                 mutantSet.add(deadNode);
                 normalSet.remove(deadNode);
             }
         } else {
 //            System.out.println("choose normal to reproduce");
-            int reproNode = (int) RandomUtil.RandomChooseFromSet(normalSet);
+            int reproNode = (int) RandomUtil.randomChooseFromSet(normalSet);
             int deadNode = RandomUtil.randomNeighborFromList(reproNode, adjaMatrix.get(reproNode));
             if (!normalSet.contains(deadNode)) {
-                System.out.println("i--");
+//                System.out.println("i--");
                 i--;
                 normalSet.add(deadNode);
                 mutantSet.remove(deadNode);
@@ -130,6 +130,19 @@ public class GraphGeneral extends Graph {
         }
         jsonObject.put("matrix",jsonArray);
         return jsonObject.toJSONString();
+    }
+
+    public static void normaliseRow(List<List<Double>> matrix){
+        //todo lacking sum == 0 handling
+        for(int j=0;j<matrix.size();j++){
+            double sum = 0;
+            for(int k=0;k<matrix.get(0).size();k++){
+                sum+=matrix.get(j).get(k);
+            }
+            for(int k=0;k<matrix.get(0).size();k++){
+                matrix.get(j).set(k,matrix.get(j).get(k)/sum);
+            }
+        }
     }
 
 
