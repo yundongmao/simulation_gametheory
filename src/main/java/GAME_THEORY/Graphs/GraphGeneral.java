@@ -13,7 +13,7 @@ public class GraphGeneral extends Graph {
         init();
     }
 
-    public void init(){
+    public void init() {
         mutantSet = new HashSet<Integer>();
         normalSet = new HashSet<Integer>();
         for (int j = 0; j < N; j++) {
@@ -38,7 +38,7 @@ public class GraphGeneral extends Graph {
     private Random random = new Random(System.currentTimeMillis());
 
     @Override
-    public boolean update() {
+    public boolean updateBD() {
         if (mutantSet.size() == N || mutantSet.size() == 0) {
             return true;
         }
@@ -71,6 +71,42 @@ public class GraphGeneral extends Graph {
     }
 
     @Override
+    public boolean updateDB() {
+        if (mutantSet.size() == N || mutantSet.size() == 0) {
+            return true;
+        }
+
+        //decide which mutant to die randomly
+        int deadNode = random.nextInt(N);
+        List<Double> tempList = new ArrayList<>();
+        List<Double> deadNeighbourList = adjaMatrix.get(deadNode);
+        for (int j = 0; j < deadNeighbourList.size(); j++) {
+            double temp2 = deadNeighbourList.get(j);
+            if (mutantSet.contains(j)) {
+                tempList.add(temp2 * r);
+            } else {
+                tempList.add(temp2);
+            }
+        }
+        List<Double> newList = newNormaliseList(tempList);
+        int reproNode = RandomUtil.randomNeighborFromList(deadNode, newList);
+        if (mutantSet.contains(reproNode)) {
+            if(!mutantSet.contains(deadNode)) {
+                i++;
+                mutantSet.add(deadNode);
+                normalSet.remove(deadNode);
+            }
+        }else{
+            if(mutantSet.contains(deadNode)){
+                i--;
+                mutantSet.remove(deadNode);
+                normalSet.add(deadNode);
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void reinit() {
         super.reinit();
         init();
@@ -80,9 +116,6 @@ public class GraphGeneral extends Graph {
     public boolean isSuccess() {
         return mutantSet.size() == N ? true : false;
     }
-
-
-
 
 
     public List<List<Double>> getAdjaMatrix() {
@@ -115,34 +148,59 @@ public class GraphGeneral extends Graph {
     @Override
     public String toJSONString() {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("initMutantNum",initMutantNum);
-        jsonObject.put("reward",r);
-        jsonObject.put("size",N);
+        jsonObject.put("initMutantNum", initMutantNum);
+        jsonObject.put("reward", r);
+        jsonObject.put("size", N);
         JSONArray jsonArray = new JSONArray();
         for (int i = 0; i < adjaMatrix.size(); i++) {
             StringBuilder sb = new StringBuilder();
-            for(Double d: adjaMatrix.get(i)){
-                sb.append(d+" ");
+            for (Double d : adjaMatrix.get(i)) {
+                sb.append(d + " ");
             }
-            sb.deleteCharAt(sb.length()-1);
+            sb.deleteCharAt(sb.length() - 1);
             String rowStr = sb.toString();
             jsonArray.add(rowStr);
         }
-        jsonObject.put("matrix",jsonArray);
+        jsonObject.put("matrix", jsonArray);
         return jsonObject.toJSONString();
     }
 
-    public static void normaliseRow(List<List<Double>> matrix){
+    public static void normaliseRow(List<List<Double>> matrix) {
         //todo lacking sum == 0 handling
-        for(int j=0;j<matrix.size();j++){
+        for (int j = 0; j < matrix.size(); j++) {
             double sum = 0;
-            for(int k=0;k<matrix.get(0).size();k++){
-                sum+=matrix.get(j).get(k);
+            for (int k = 0; k < matrix.get(0).size(); k++) {
+                sum += matrix.get(j).get(k);
             }
-            for(int k=0;k<matrix.get(0).size();k++){
-                matrix.get(j).set(k,matrix.get(j).get(k)/sum);
+            for (int k = 0; k < matrix.get(0).size(); k++) {
+                matrix.get(j).set(k, matrix.get(j).get(k) / sum);
             }
         }
+    }
+
+    public static List<Double> newNormaliseList(List<Double> list) {
+        double sum = 0;
+        List<Double> resultList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            sum += list.get(i);
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            resultList.add(list.get(i) / sum);
+        }
+        return resultList;
+    }
+
+    public static void main(String[] args) {
+        List<Double> ll = new ArrayList<>();
+        ll.add(1.8);
+        ll.add(1.8);
+        ll.add(1.8);
+        ll.add(1.8);
+        ll.add(1.8);
+        ll.add(1.8);
+        List<Double> result = newNormaliseList(ll);
+        System.out.println(result);
     }
 
 

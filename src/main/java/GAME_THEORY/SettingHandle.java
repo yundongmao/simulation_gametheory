@@ -2,6 +2,7 @@ package GAME_THEORY;
 
 import GAME_THEORY.Graphs.Graph;
 import GAME_THEORY.Graphs.GraphGeneral;
+import GAME_THEORY.enums.ProcessType;
 import GAME_THEORY.utils.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 
@@ -25,7 +26,7 @@ public class SettingHandle {
     }
 
     public synchronized static Setting readSetting() {
-        return new Setting(null, 100);
+        return new Setting(null, 100,ProcessType.BD);
     }
 
     public synchronized static void test(String name) {
@@ -43,11 +44,11 @@ public class SettingHandle {
 
     public static void main(String[] args) {
         Graph graph = null;
-//        graph= GraphHandle.generateErdoRandomGraph(0.9,10,1,2.0);
+//        graph= GraphHandle.generateErdoRandomGraph(1.0,10,1,2.0);
 //        graph= GraphHandle.generateWattsStrogatzGraph(10,4,0.5,1,2.0);
         graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
         System.out.println(((GraphGeneral)graph).getAdjaMatrix());
-        Setting setting = new Setting(graph,10);
+        Setting setting = new Setting(graph,10, ProcessType.DB);
         System.out.println("simulation start");
         setting.runTest();
         System.out.println("simulation end");

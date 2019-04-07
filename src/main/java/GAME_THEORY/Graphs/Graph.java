@@ -46,7 +46,8 @@ public abstract class Graph{
 
 
     //if the process is end return true
-    public abstract boolean update();
+    public abstract boolean updateBD();
+    public abstract boolean updateDB();
 
     public void reinit(){
         i = initMutantNum;
