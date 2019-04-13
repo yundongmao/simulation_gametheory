@@ -165,6 +165,50 @@ public class GraphGeneral extends Graph {
         return jsonObject.toJSONString();
     }
 
+    @Override
+    public boolean isConnected() {
+        Set<Integer> current = new HashSet();
+        Set<Integer> prev = new HashSet();
+        current.add(0);
+        prev.add(0);
+        while(prev.size()>0){
+            Set<Integer> temp = new HashSet();
+            for(int node:prev){
+                for(int j=0;j<N;j++){
+                    if(adjaMatrix.get(node).get(j)>0 && !current.contains(j)){
+                        current.add(j);
+                        temp.add(j);
+                    }
+                }
+            }
+            prev = temp;
+        }
+        if(current.size() < N){
+            return false;
+        }
+
+        current = new HashSet();
+        prev = new HashSet();
+        current.add(0);
+        prev.add(0);
+        while(prev.size()>0){
+            Set<Integer> temp = new HashSet();
+            for(int node:prev){
+                for(int j=0;j<N;j++){
+                    if(adjaMatrix.get(j).get(node)>0 && !current.contains(j)){
+                        current.add(j);
+                        temp.add(j);
+                    }
+                }
+            }
+            prev = temp;
+        }
+        if(current.size() < N){
+            return false;
+        }
+        return true;
+    }
+
     public static void normaliseRow(List<List<Double>> matrix) {
         //todo lacking sum == 0 handling
         for (int j = 0; j < matrix.size(); j++) {

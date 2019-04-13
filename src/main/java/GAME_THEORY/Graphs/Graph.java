@@ -75,4 +75,6 @@ public abstract class Graph{
 
     public abstract String toJSONString();
 
+    public abstract boolean isConnected();
+
 }

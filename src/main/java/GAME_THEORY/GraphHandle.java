@@ -48,6 +48,27 @@ public class GraphHandle {
         return graph;
     }
 
+    public static Graph generateErdoRandomGraphUndirect(double p, int N, int mutantnum, double reward) {
+        List<List<Double>> adjaMatrix = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
+            adjaMatrix.add(tempList);
+        }
+
+
+        for (int j = 0; j < N; j++) {
+            for (int k = j + 1; k < N; k++) {
+                double temp = random.nextDouble() <= p ? 1.0 : 0.0;
+                adjaMatrix.get(j).set(k,temp);
+                adjaMatrix.get(k).set(j,temp);
+            }
+        }
+        GraphGeneral.normaliseRow(adjaMatrix);
+        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
+        return graph;
+    }
+
+
     /**
      * @param N         node number
      * @param K         should be even
@@ -128,7 +149,6 @@ public class GraphHandle {
     }
 
     /**
-     *
      * @param initNodes
      * @param outDegrees
      * @param N
@@ -136,32 +156,32 @@ public class GraphHandle {
      * @param reward
      * @return
      */
-    public static Graph generateBaraAlbertGraph(int initNodes,int outDegrees, int N, int mutantnum, double reward) {
+    public static Graph generateBaraAlbertGraph(int initNodes, int outDegrees, int N, int mutantnum, double reward) {
         List<List<Double>> adjaMatrix = new ArrayList<>();
         for (int i = 0; i < N; i++) {
             List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
             adjaMatrix.add(tempList);
         }
         double[] sumList = new double[N];
-        for (int i = 0; i < initNodes-1; i++) {
-            adjaMatrix.get(i).set(i+1,1.0);
-            adjaMatrix.get(i+1).set(i,1.0);
-            sumList[i]+=1;
-            sumList[i+1]+=1;
+        for (int i = 0; i < initNodes - 1; i++) {
+            adjaMatrix.get(i).set(i + 1, 1.0);
+            adjaMatrix.get(i + 1).set(i, 1.0);
+            sumList[i] += 1;
+            sumList[i + 1] += 1;
         }
 
 
-        for(int i=initNodes;i<N;i++){
-            for(int j =0;j<outDegrees;j++){
+        for (int i = initNodes; i < N; i++) {
+            for (int j = 0; j < outDegrees; j++) {
                 int index = RandomUtil.randomChooseIndexDepValue(sumList);
-                if(adjaMatrix.get(i).get(index) != 0){
-                    j-=1;
+                if (adjaMatrix.get(i).get(index) != 0) {
+                    j -= 1;
                     continue;
                 }
-                adjaMatrix.get(i).set(index,1.0);
-                adjaMatrix.get(index).set(i,1.0);
-                sumList[i]+=1;
-                sumList[index]+=1;
+                adjaMatrix.get(i).set(index, 1.0);
+                adjaMatrix.get(index).set(i, 1.0);
+                sumList[i] += 1;
+                sumList[index] += 1;
             }
         }
 
@@ -179,6 +199,6 @@ public class GraphHandle {
     public static void main(String[] args) {
 //        System.out.println(((GraphGeneral)generateErdoRandomGraph(0.5,10,1,2.0)).getAdjaMatrix());
 //        System.out.println(((GraphGeneral)generateWattsStrogatzGraph(10,4,0.5,1,2.0)).getAdjaMatrix());
-        System.out.println(((GraphGeneral)generateBaraAlbertGraph(2,2, 10, 1, 2.0)).getAdjaMatrix());
+        System.out.println(((GraphGeneral) generateBaraAlbertGraph(2, 2, 10, 1, 2.0)).getAdjaMatrix());
     }
 }

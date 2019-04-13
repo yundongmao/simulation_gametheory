@@ -3,11 +3,13 @@ package GAME_THEORY;
 import GAME_THEORY.Graphs.Graph;
 import GAME_THEORY.Graphs.GraphGeneral;
 import GAME_THEORY.enums.ProcessType;
+import GAME_THEORY.utils.FileUtil;
 import GAME_THEORY.utils.StringUtil;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TransferQueue;
 
 public class SettingHandle {
     private static List settings = null;
@@ -26,7 +28,7 @@ public class SettingHandle {
     }
 
     public synchronized static Setting readSetting() {
-        return new Setting(null, 100,ProcessType.BD);
+        return new Setting(null, 100, ProcessType.BD);
     }
 
     public synchronized static void test(String name) {
@@ -44,15 +46,42 @@ public class SettingHandle {
 
     public static void main(String[] args) {
         Graph graph = null;
-//        graph= GraphHandle.generateErdoRandomGraph(1.0,10,1,2.0);
+//        for(int i=0;;i++){
+        JSONObject jsonObject = new JSONObject();
+        for(double p=0.1;p<=1.0;p+=0.1){
+            for(int r=10;r<50;r++){
+                for(int N = 10;N<12;N++){
+                    for(int i=0;i<100;i++)
+                    graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+                    if(!graph.isConnected()){
+                        i--;
+                        continue;
+                    }
+                    Setting setting = new Setting(graph, 100, ProcessType.BD);
+                    setting.runTest();
+                    jsonObject.put("success_times",setting.getSuccessTimes());
+                    jsonObject.put("type","ErdoRandomGraph");
+                    jsonObject.put("p",p);
+                    jsonObject.put("init_mutant_num",1);
+                    jsonObject.put("reward",r/10.0);
+                    jsonObject.put("size",N);
+                    FileUtil.writeStringToFile("simulation_0001", true,jsonObject.toJSONString());
+                    return;
+                }
+            }
+
+        }
+
+
+//        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
+
+
+
+
 //        graph= GraphHandle.generateWattsStrogatzGraph(10,4,0.5,1,2.0);
-        graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
-        System.out.println(((GraphGeneral)graph).getAdjaMatrix());
-        Setting setting = new Setting(graph,10, ProcessType.DB);
-        System.out.println("simulation start");
-        setting.runTest();
-        System.out.println("simulation end");
-        System.out.println(setting.getSuccessTimes());
+//        graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
+//        System.out.println(((GraphGeneral)graph).getAdjaMatrix());
+
 
 
 
