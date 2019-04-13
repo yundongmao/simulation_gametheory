@@ -32,12 +32,12 @@ public class Setting {
     public void runTest() {
         if (processType.equals(ProcessType.BD)) {
             for (int i = 0; i < testTimes; i++) {
-                System.out.println("BD " + i + "th test");
+//                System.out.println("BD " + i + "th test");
                 runOneTestBD();
             }
         }else if(processType.equals(ProcessType.DB)){
             for (int i = 0; i < testTimes; i++) {
-                System.out.println("DB " + i + "th test");
+//                System.out.println("DB " + i + "th test");
                 runOneTestDB();
             }
         }
