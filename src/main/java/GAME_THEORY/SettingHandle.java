@@ -51,22 +51,26 @@ public class SettingHandle {
         for(double p=0.1;p<=1.0;p+=0.1){
             for(int r=10;r<50;r++){
                 for(int N = 10;N<12;N++){
-                    for(int i=0;i<100;i++)
-                    graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
-                    if(!graph.isConnected()){
-                        i--;
-                        continue;
+                    int totalsuccess = 0;
+                    for(int i=0;i<100;i++){
+                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+                        if(!graph.isConnected()){
+                            i--;
+                            continue;
+                        }
+                        Setting setting = new Setting(graph, 100, ProcessType.BD);
+                        setting.runTest();
+                        totalsuccess+=setting.getSuccessTimes();
+                        FileUtil.writeStringToFile("simulation_0001", true,jsonObject.toJSONString());
                     }
-                    Setting setting = new Setting(graph, 100, ProcessType.BD);
-                    setting.runTest();
-                    jsonObject.put("success_times",setting.getSuccessTimes());
+                    jsonObject.put("fixation_prob",totalsuccess/100*100.0);
                     jsonObject.put("type","ErdoRandomGraph");
                     jsonObject.put("p",p);
                     jsonObject.put("init_mutant_num",1);
                     jsonObject.put("reward",r/10.0);
                     jsonObject.put("size",N);
-                    FileUtil.writeStringToFile("simulation_0001", true,jsonObject.toJSONString());
-                    return;
+                    jsonObject.put("test_times",100);
+                    break;
                 }
             }
 
