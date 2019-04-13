@@ -48,12 +48,14 @@ public class SettingHandle {
         Graph graph = null;
 //        for(int i=0;;i++){
         JSONObject jsonObject = new JSONObject();
-        for(double p=0.1;p<=1.0;p+=0.1){
-            for(int r=10;r<20;r++){
-                for(int N = 10;N<12;N++){
+        for(int pi=1;pi<11;pi++){
+            double p = pi/10.0;
+            for(int r=20;r<21;r++){
+                for(int N = 10;N<15;N++){
+                    System.out.println(N+" size graph");
                     int totalsuccess = 0;
                     for(int i=0;i<100;i++){
-                        System.out.println(i+"th"+" graph");
+//                        System.out.println(i+"th"+" graph");
                         graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
                         if(!graph.isConnected()){
                             i--;
