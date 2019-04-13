@@ -50,8 +50,8 @@ public class SettingHandle {
         JSONObject jsonObject = new JSONObject();
         for(int pi=1;pi<11;pi++){
             double p = pi/10.0;
-            for(int r=20;r<21;r++){
-                for(int N = 10;N<15;N++){
+            for(int r=20;r<51;r++){
+                for(int N = 10;N<11;N++){
                     System.out.println(N+" size graph");
                     int totalsuccess = 0;
                     for(int i=0;i<100;i++){
@@ -73,7 +73,7 @@ public class SettingHandle {
                     jsonObject.put("size",N);
                     jsonObject.put("total_test",100*100);
                     jsonObject.put("total_success_times",totalsuccess);
-                    FileUtil.writeStringToFile("simulation_0001", true,jsonObject.toJSONString());
+                    FileUtil.writeStringToFile("simulation_0001", true,jsonObject.toJSONString()+"\n");
                 }
             }
 
