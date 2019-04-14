@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="96281381-baf1-40cc-bdc4-9d0d941ec9f9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Document1.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Document1.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GAME_THEORY/GraphHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GAME_THEORY/GraphHandle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GAME_THEORY/GraphHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GAME_THEORY/GraphHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GAME_THEORY/SettingHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GAME_THEORY/SettingHandle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GAME_THEORY/utils/RandomUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GAME_THEORY/utils/RandomUtil.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,54 +34,37 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
-          <entry key="java" value="49" />
+          <entry key="java" value="50" />
           <entry key="simulation_0001" value="11" />
+          <entry key="simulation_BaraAlbert" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
-          <entry key="JAVA" value="49" />
-          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="JAVA" value="50" />
+          <entry key="PLAIN_TEXT" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="5668" />
+          <entry key="java" value="5925" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="5668" />
+          <entry key="JAVA" value="5925" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="91" column="55" lean-forward="true" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/simulation_0001">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5270">
-              <caret line="310" selection-start-line="310" selection-end-line="310" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/UtilTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="84">
+              <caret line="125" selection-start-line="125" selection-end-line="125" />
             </state>
           </provider>
         </entry>
@@ -128,13 +114,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/GraphHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
+            <state relative-caret-position="136">
+              <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
               <folding>
                 <element signature="method#generateWattsStrogatzGraph#0;class#GraphHandle#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,15 +188,15 @@
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/GameWorker.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/Graphs/GraphComplete.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/enums/ProcessType.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/UtilTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/Graphs/Graph.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/Graphs/GraphGeneral.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/FileUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/Setting.java" />
-        <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/GraphHandle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" />
       </list>
     </option>
   </component>
@@ -299,7 +297,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555241791403" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555244642617" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -415,18 +413,18 @@
       <workItem from="1554624270742" duration="8479000" />
       <workItem from="1555058205020" duration="6043000" />
       <workItem from="1555146383215" duration="9722000" />
-      <workItem from="1555229323033" duration="2939000" />
+      <workItem from="1555229323033" duration="5594000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39920000" />
+    <option name="totallyTimeSpent" value="42575000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25869894" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25869894" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -435,7 +433,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.46317512" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3878887" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -443,10 +441,10 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3298292" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3289689" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Database" order="4" />
@@ -461,6 +459,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/target/classes/GAME_THEORY/App.class" />
@@ -493,16 +495,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" column="55" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -583,20 +575,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="91" column="55" lean-forward="true" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+        <state relative-caret-position="163">
+          <caret line="44" column="25" selection-start-line="44" selection-start-column="25" selection-end-line="44" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/GraphHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="195" lean-forward="true" selection-start-line="195" selection-end-line="195" />
+        <state relative-caret-position="136">
+          <caret line="228" column="28" selection-start-line="228" selection-start-column="28" selection-end-line="228" selection-end-column="28" />
           <folding>
             <element signature="method#generateWattsStrogatzGraph#0;class#GraphHandle#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulation_BaraAlbert">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2014" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="125" selection-start-line="125" selection-end-line="125" />
         </state>
       </provider>
     </entry>

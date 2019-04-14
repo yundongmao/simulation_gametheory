@@ -80,16 +80,50 @@ public class SettingHandle {
 
 //        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
 
+//        JSONObject jsonObject = new JSONObject();
+//        for (int N = 10; N < 20; N++) {
+//            System.out.println(N + " size graph");
+//            for (int r = 20; r < 21; r++) {
+//                for (int K = 4; K < N/2; K+=2) {
+//                    for(int Bi=1;Bi<11;Bi++) {
+//                        double B = Bi/10.0;
+//                        int totalsuccess = 0;
+//                        for (int i = 0; i < 100; i++) {
+//                            graph = GraphHandle.generateWattsStrogatzGraphUndirect(N, K, B, 1, r/10.0);
+//                            if (!graph.isConnected()) {
+//                                i--;
+//                                continue;
+//                            }
+//                            Setting setting = new Setting(graph, 100, ProcessType.BD);
+//                            setting.runTest();
+//                            totalsuccess += setting.getSuccessTimes();
+//                        }
+//                        jsonObject.put("fixation_prob", totalsuccess / (100 * 100.0));
+//                        jsonObject.put("type", "WattsStrogatz");
+//                        jsonObject.put("B", B);
+//                        jsonObject.put("K", K);
+//                        jsonObject.put("init_mutant_num", 1);
+//                        jsonObject.put("reward", r / 10.0);
+//                        jsonObject.put("size", N);
+//                        jsonObject.put("total_test", 100 * 100);
+//                        jsonObject.put("total_success_times", totalsuccess);
+//                        FileUtil.writeStringToFile("simulation_WattsStrogatz", true, jsonObject.toJSONString() + "\n");
+//                    }
+//
+//                }
+//            }
+//        }
+
+//
         JSONObject jsonObject = new JSONObject();
-        for (int N = 10; N < 20; N++) {
-            System.out.println(N + " size graph");
-            for (int r = 20; r < 21; r++) {
-                for (int K = 4; K < N/2; K+=2) {
-                    for(int Bi=1;Bi<11;Bi++) {
-                        double B = Bi/10.0;
+        for (int initNode = 2; initNode < 3; initNode++) {
+            for (int N = 10; N < 20; N++) {
+                System.out.println(N + " size graph");
+                for (int r = 20; r < 21; r++) {
+                    for (int outD = 3; outD < N; outD++) {
                         int totalsuccess = 0;
                         for (int i = 0; i < 100; i++) {
-                            graph = GraphHandle.generateWattsStrogatzGraphUndirect(N, K, B, 1, 2.0);
+                            graph = GraphHandle.generateBaraAlbertGraph(outD, outD, N, 1, r/10.0);
                             if (!graph.isConnected()) {
                                 i--;
                                 continue;
@@ -100,21 +134,23 @@ public class SettingHandle {
                         }
                         jsonObject.put("fixation_prob", totalsuccess / (100 * 100.0));
                         jsonObject.put("type", "WattsStrogatz");
-                        jsonObject.put("B", B);
-                        jsonObject.put("K", K);
+                        jsonObject.put("outDegree", outD);
+                        jsonObject.put("initNode", outD);
                         jsonObject.put("init_mutant_num", 1);
                         jsonObject.put("reward", r / 10.0);
                         jsonObject.put("size", N);
                         jsonObject.put("total_test", 100 * 100);
                         jsonObject.put("total_success_times", totalsuccess);
-                        FileUtil.writeStringToFile("simulation_WattsStrogatz", true, jsonObject.toJSONString() + "\n");
-                    }
+                        FileUtil.writeStringToFile("simulation_BaraAlbert", true, jsonObject.toJSONString() + "\n");
 
+                    }
                 }
             }
         }
 
-
+//        graph = GraphHandle.generateBaraAlbertGraph(4, 4, 10, 1, 2);
+//
+//        System.out.println(((GraphGeneral) graph).getAdjaMatrix());
 //        graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
 //                    System.out.println(((GraphGeneral) graph).getAdjaMatrix());
 

@@ -225,7 +225,7 @@ public class GraphHandle {
 
         for (int i = initNodes; i < N; i++) {
             for (int j = 0; j < outDegrees; j++) {
-                int index = RandomUtil.randomChooseIndexDepValue(sumList);
+                int index = RandomUtil.randomChooseIndexDepValue(sumList,i);
                 if (adjaMatrix.get(i).get(index) != 0) {
                     j -= 1;
                     continue;

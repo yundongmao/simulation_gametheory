@@ -36,12 +36,13 @@ public class RandomUtil {
         return null;
     }
 
-    public static int randomChooseIndexDepValue(double[] list){
+    public static int randomChooseIndexDepValue(double[] list,int index){
         double temp = random.nextDouble();
         double sum = 0.0;
         for(double d : list){
             sum+=d;
         }
+        sum-=list[index];
         double tempsum = 0;
         for(int i=0;i<list.length;i++){
             tempsum+=list[i];
