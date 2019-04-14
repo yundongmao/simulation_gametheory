@@ -59,8 +59,8 @@ public class GraphHandle {
         for (int j = 0; j < N; j++) {
             for (int k = j + 1; k < N; k++) {
                 double temp = random.nextDouble() <= p ? 1.0 : 0.0;
-                adjaMatrix.get(j).set(k,temp);
-                adjaMatrix.get(k).set(j,temp);
+                adjaMatrix.get(j).set(k, temp);
+                adjaMatrix.get(k).set(j, temp);
             }
         }
         GraphGeneral.normaliseRow(adjaMatrix);
@@ -147,6 +147,58 @@ public class GraphHandle {
         Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
         return graph;
     }
+
+    /**
+     * @param N         node number
+     * @param K         should be even
+     * @param B         probability rewrite the right most link
+     * @param mutantnum init mutant number
+     * @param reward    mutant reward
+     * @return
+     */
+    public static Graph generateWattsStrogatzGraphUndirect(int N, int K, double B, int mutantnum, double reward) {
+        if (K % 2 == 1) {
+            System.out.println("K should be even not " + K);
+            return null;
+        }
+        List<List<Double>> adjaMatrix = new ArrayList<>();
+        for (int i = 0; i < N; i++) {
+            List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
+            adjaMatrix.add(tempList);
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j < K/2+1; j++) {
+                adjaMatrix.get(i).set((i+j)%N,1.0);
+                adjaMatrix.get((i+j)%N).set(i,1.0);
+            }
+        }
+        for (int i = 0; i < N; i++) {
+            for (int j = 1; j < K/2+1; j++) {
+                if (random.nextDouble() <= B) {
+                    adjaMatrix.get(i).set((i+j)%N, 0.0);
+                    adjaMatrix.get((i+j)%N).set(i, 0.0);
+                    while (true) {
+                        int temp = random.nextInt(N);
+                        if (temp == i) {
+                            continue;
+                        }
+                        if (adjaMatrix.get(i).get(temp) == 1.0) {
+                            continue;
+                        }
+                        adjaMatrix.get(i).set(temp, 1.0);
+                        adjaMatrix.get(temp).set(i, 1.0);
+                        break;
+                    }
+                }
+            }
+        }
+
+        GraphGeneral.normaliseRow(adjaMatrix);
+        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
+        return graph;
+    }
+
 
     /**
      * @param initNodes
