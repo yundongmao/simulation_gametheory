@@ -84,12 +84,13 @@ public class SettingHandle {
         graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
 
         JSONObject jsonObject = new JSONObject();
-        for (int N = 22; N < 101; N+=1) {
+        for (int N = 100; N < 101; N+=1) {
             System.out.println(N + " size graph");
             int testTimes = 100;
             int numberOfGraphs = 100;
             for (int r = 50; r < 51; r++) {
                 for (int K = 10; K < N/2; K+=2) {
+                    System.out.println("K: "+K);
                     for(int Bi=5;Bi<6;Bi++) {
                         double B = Bi/10.0;
                         int totalsuccess = 0;
@@ -112,10 +113,9 @@ public class SettingHandle {
                         jsonObject.put("size", N);
                         jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
                         jsonObject.put("total_success_times", totalsuccess);
-                        FileUtil.writeStringToFile("simulation_WattsStrogatz_DB_004", true, jsonObject.toJSONString() + "\n");
+                        FileUtil.writeStringToFile("simulation_WattsStrogatz_DB_005", true, jsonObject.toJSONString() + "\n");
                         System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
                     }
-                    break;
                 }
             }
         }
