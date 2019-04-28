@@ -1,0 +1,10 @@
+{"reward":5.0,"size":10,"total_success_times":7981,"total_test":10000.0,"fixation_prob":0.7981,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":11,"total_success_times":8028,"total_test":10000.0,"fixation_prob":0.8028,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":12,"total_success_times":7969,"total_test":10000.0,"fixation_prob":0.7969,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":13,"total_success_times":8068,"total_test":10000.0,"fixation_prob":0.8068,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":14,"total_success_times":7995,"total_test":10000.0,"fixation_prob":0.7995,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":15,"total_success_times":8047,"total_test":10000.0,"fixation_prob":0.8047,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":16,"total_success_times":7972,"total_test":10000.0,"fixation_prob":0.7972,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":17,"total_success_times":7949,"total_test":10000.0,"fixation_prob":0.7949,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":18,"total_success_times":8017,"total_test":10000.0,"fixation_prob":0.8017,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
+{"reward":5.0,"size":19,"total_success_times":8024,"total_test":10000.0,"fixation_prob":0.8024,"init_mutant_num":1,"outDegree":8,"type":"WattsStrogatz","initNode":8}
