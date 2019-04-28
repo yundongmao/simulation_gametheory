@@ -46,79 +46,79 @@ public class SettingHandle {
 
     public static void main(String[] args) {
         Graph graph = null;
-        JSONObject jsonObject = new JSONObject();
-        for(int pi=5;pi<6;pi++){
-            double p = pi/10.0;
-            for(int r=50;r<51;r++){
-                for(int N = 51;N<101;N+=1){
-                    System.out.println(N+" size graph");
-                    int totalsuccess = 0;
-                    int testTimes = 100;
-                    int numberOfGraphs = 100;
-                    for(int i=0;i<numberOfGraphs;i++){
-                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
-                        if(!graph.isConnected()){
-                            i--;
-                            continue;
-                        }
-                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
-                        setting.runTest();
-                        totalsuccess+=setting.getSuccessTimes();
-                    }
-                    jsonObject.put("fixation_prob",totalsuccess/(testTimes*numberOfGraphs*1.0));
-                    jsonObject.put("type","ErdoRandomGraph");
-                    jsonObject.put("p",p);
-                    jsonObject.put("init_mutant_num",1);
-                    jsonObject.put("reward",r/10.0);
-                    jsonObject.put("size",N);
-                    jsonObject.put("total_test",testTimes*100);
-                    jsonObject.put("total_success_times",totalsuccess);
-                    FileUtil.writeStringToFile("simulation_week7_Erdo_DB_008_p0.5", true,jsonObject.toJSONString()+"\n");
-                    System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
-                }
-            }
-
-        }
-
-
-//        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
-//
 //        JSONObject jsonObject = new JSONObject();
-//        for (int N = 100; N < 1001; N+=100) {
-//            System.out.println(N + " size graph");
-//            int testTimes = 10;
-//            int numberOfGraphs = 10;
-//            for (int r = 50; r < 51; r++) {
-//                for (int K = 40; K < N/2; K+=2) {
-//                    for(int Bi=5;Bi<6;Bi++) {
-//                        double B = Bi/10.0;
-//                        int totalsuccess = 0;
-//                        for (int i = 0; i < numberOfGraphs; i++) {
-//                            graph = GraphHandle.generateWattsStrogatzGraphUndirect(N, K, B, 1, r/10.0);
-//                            if (!graph.isConnected()) {
-//                                i--;
-//                                continue;
-//                            }
-//                            Setting setting = new Setting(graph, testTimes, ProcessType.BD);
-//                            setting.runTest();
-//                            totalsuccess += setting.getSuccessTimes();
+//        for(int pi=5;pi<6;pi++){
+//            double p = pi/10.0;
+//            for(int r=50;r<51;r++){
+//                for(int N = 51;N<101;N+=1){
+//                    System.out.println(N+" size graph");
+//                    int totalsuccess = 0;
+//                    int testTimes = 100;
+//                    int numberOfGraphs = 100;
+//                    for(int i=0;i<numberOfGraphs;i++){
+//                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+//                        if(!graph.isConnected()){
+//                            i--;
+//                            continue;
 //                        }
-//                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
-//                        jsonObject.put("type", "WattsStrogatz");
-//                        jsonObject.put("B", B);
-//                        jsonObject.put("K", K);
-//                        jsonObject.put("init_mutant_num", 1);
-//                        jsonObject.put("reward", r / 10.0);
-//                        jsonObject.put("size", N);
-//                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
-//                        jsonObject.put("total_success_times", totalsuccess);
-//                        FileUtil.writeStringToFile("simulation_WattsStrogatz_DB_002", true, jsonObject.toJSONString() + "\n");
-//                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+//                        setting.runTest();
+//                        totalsuccess+=setting.getSuccessTimes();
 //                    }
-//                    break;
+//                    jsonObject.put("fixation_prob",totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                    jsonObject.put("type","ErdoRandomGraph");
+//                    jsonObject.put("p",p);
+//                    jsonObject.put("init_mutant_num",1);
+//                    jsonObject.put("reward",r/10.0);
+//                    jsonObject.put("size",N);
+//                    jsonObject.put("total_test",testTimes*100);
+//                    jsonObject.put("total_success_times",totalsuccess);
+//                    FileUtil.writeStringToFile("simulation_week7_Erdo_DB_008_p0.5", true,jsonObject.toJSONString()+"\n");
+//                    System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
 //                }
 //            }
+//
 //        }
+
+
+        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
+
+        JSONObject jsonObject = new JSONObject();
+        for (int N = 10; N < 101; N+=1) {
+            System.out.println(N + " size graph");
+            int testTimes = 100;
+            int numberOfGraphs = 100;
+            for (int r = 50; r < 51; r++) {
+                for (int K = 4; K < N/2; K+=2) {
+                    for(int Bi=5;Bi<6;Bi++) {
+                        double B = Bi/10.0;
+                        int totalsuccess = 0;
+                        for (int i = 0; i < numberOfGraphs; i++) {
+                            graph = GraphHandle.generateWattsStrogatzGraphUndirect(N, K, B, 1, r/10.0);
+                            if (!graph.isConnected()) {
+                                i--;
+                                continue;
+                            }
+                            Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+                            setting.runTest();
+                            totalsuccess += setting.getSuccessTimes();
+                        }
+                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
+                        jsonObject.put("type", "WattsStrogatz");
+                        jsonObject.put("B", B);
+                        jsonObject.put("K", K);
+                        jsonObject.put("init_mutant_num", 1);
+                        jsonObject.put("reward", r / 10.0);
+                        jsonObject.put("size", N);
+                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
+                        jsonObject.put("total_success_times", totalsuccess);
+                        FileUtil.writeStringToFile("simulation_WattsStrogatz_DB_003", true, jsonObject.toJSONString() + "\n");
+                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+                    }
+                    break;
+                }
+            }
+        }
 
 //
 //        JSONObject jsonObject = new JSONObject();
