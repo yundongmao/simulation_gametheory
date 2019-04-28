@@ -123,7 +123,7 @@ public class SettingHandle {
 //
         JSONObject jsonObject = new JSONObject();
         for (int initNode = 2; initNode < 3; initNode++) {
-            for (int N = 5; N < 101; N+=1) {
+            for (int N = 100; N < 101; N+=1) {
                 int testTimes = 100;
                 int numberOfGraphs = 100;
                 System.out.println(N + " size graph");
@@ -149,9 +149,8 @@ public class SettingHandle {
                         jsonObject.put("size", N);
                         jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
                         jsonObject.put("total_success_times", totalsuccess);
-                        FileUtil.writeStringToFile("simulation_BaraAlbert_DB_003", true, jsonObject.toJSONString() + "\n");
+                        FileUtil.writeStringToFile("simulation_BaraAlbert_DB_004", true, jsonObject.toJSONString() + "\n");
                         System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
-                        break;
                     }
                 }
             }
