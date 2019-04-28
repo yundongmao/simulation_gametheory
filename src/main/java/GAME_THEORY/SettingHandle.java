@@ -46,39 +46,39 @@ public class SettingHandle {
 
     public static void main(String[] args) {
         Graph graph = null;
-//        JSONObject jsonObject = new JSONObject();
-//        for(int pi=5;pi<6;pi++){
-//            double p = pi/10.0;
-//            for(int r=50;r<51;r++){
-//                for(int N = 100;N<1001;N+=100){
-//                    System.out.println(N+" size graph");
-//                    int totalsuccess = 0;
-//                    int testTimes = 100;
-//                    int numberOfGraphs = 100;
-//                    for(int i=0;i<numberOfGraphs;i++){
-//                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
-//                        if(!graph.isConnected()){
-//                            i--;
-//                            continue;
-//                        }
-//                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
-//                        setting.runTest();
-//                        totalsuccess+=setting.getSuccessTimes();
-//                    }
-//                    jsonObject.put("fixation_prob",totalsuccess/(testTimes*numberOfGraphs*1.0));
-//                    jsonObject.put("type","ErdoRandomGraph");
-//                    jsonObject.put("p",p);
-//                    jsonObject.put("init_mutant_num",1);
-//                    jsonObject.put("reward",r/10.0);
-//                    jsonObject.put("size",N);
-//                    jsonObject.put("total_test",testTimes*100);
-//                    jsonObject.put("total_success_times",totalsuccess);
-//                    FileUtil.writeStringToFile("simulation_week7_Erdo_DB_007_p0.5", true,jsonObject.toJSONString()+"\n");
-//                    System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
-//                }
-//            }
-//
-//        }
+        JSONObject jsonObject = new JSONObject();
+        for(int pi=5;pi<6;pi++){
+            double p = pi/10.0;
+            for(int r=50;r<51;r++){
+                for(int N = 51;N<101;N+=1){
+                    System.out.println(N+" size graph");
+                    int totalsuccess = 0;
+                    int testTimes = 100;
+                    int numberOfGraphs = 100;
+                    for(int i=0;i<numberOfGraphs;i++){
+                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+                        if(!graph.isConnected()){
+                            i--;
+                            continue;
+                        }
+                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+                        setting.runTest();
+                        totalsuccess+=setting.getSuccessTimes();
+                    }
+                    jsonObject.put("fixation_prob",totalsuccess/(testTimes*numberOfGraphs*1.0));
+                    jsonObject.put("type","ErdoRandomGraph");
+                    jsonObject.put("p",p);
+                    jsonObject.put("init_mutant_num",1);
+                    jsonObject.put("reward",r/10.0);
+                    jsonObject.put("size",N);
+                    jsonObject.put("total_test",testTimes*100);
+                    jsonObject.put("total_success_times",totalsuccess);
+                    FileUtil.writeStringToFile("simulation_week7_Erdo_DB_008_p0.5", true,jsonObject.toJSONString()+"\n");
+                    System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+                }
+            }
+
+        }
 
 
 //        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
@@ -121,41 +121,41 @@ public class SettingHandle {
 //        }
 
 //
-        JSONObject jsonObject = new JSONObject();
-        for (int initNode = 2; initNode < 3; initNode++) {
-            for (int N = 100; N < 1001; N+=100) {
-                int testTimes = 10;
-                int numberOfGraphs = 10;
-                System.out.println(N + " size graph");
-                for (int r = 50; r < 51; r++) {
-                    for (int outD = 30; outD < N; outD++) {
-                        int totalsuccess = 0;
-                        for (int i = 0; i < numberOfGraphs; i++) {
-                            graph = GraphHandle.generateBaraAlbertGraph(outD, outD, N, 1, r/10.0);
-                            if (!graph.isConnected()) {
-                                i--;
-                                continue;
-                            }
-                            Setting setting = new Setting(graph, testTimes, ProcessType.DB);
-                            setting.runTest();
-                            totalsuccess += setting.getSuccessTimes();
-                        }
-                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
-                        jsonObject.put("type", "WattsStrogatz");
-                        jsonObject.put("outDegree", outD);
-                        jsonObject.put("initNode", outD);
-                        jsonObject.put("init_mutant_num", 1);
-                        jsonObject.put("reward", r / 10.0);
-                        jsonObject.put("size", N);
-                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
-                        jsonObject.put("total_success_times", totalsuccess);
-                        FileUtil.writeStringToFile("simulation_BaraAlbert_DB_002", true, jsonObject.toJSONString() + "\n");
-                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
-                        break;
-                    }
-                }
-            }
-        }
+//        JSONObject jsonObject = new JSONObject();
+//        for (int initNode = 2; initNode < 3; initNode++) {
+//            for (int N = 100; N < 1001; N+=100) {
+//                int testTimes = 10;
+//                int numberOfGraphs = 10;
+//                System.out.println(N + " size graph");
+//                for (int r = 50; r < 51; r++) {
+//                    for (int outD = 30; outD < N; outD++) {
+//                        int totalsuccess = 0;
+//                        for (int i = 0; i < numberOfGraphs; i++) {
+//                            graph = GraphHandle.generateBaraAlbertGraph(outD, outD, N, 1, r/10.0);
+//                            if (!graph.isConnected()) {
+//                                i--;
+//                                continue;
+//                            }
+//                            Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+//                            setting.runTest();
+//                            totalsuccess += setting.getSuccessTimes();
+//                        }
+//                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
+//                        jsonObject.put("type", "WattsStrogatz");
+//                        jsonObject.put("outDegree", outD);
+//                        jsonObject.put("initNode", outD);
+//                        jsonObject.put("init_mutant_num", 1);
+//                        jsonObject.put("reward", r / 10.0);
+//                        jsonObject.put("size", N);
+//                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
+//                        jsonObject.put("total_success_times", totalsuccess);
+//                        FileUtil.writeStringToFile("simulation_BaraAlbert_DB_002", true, jsonObject.toJSONString() + "\n");
+//                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                        break;
+//                    }
+//                }
+//            }
+//        }
 
 //        graph = GraphHandle.generateBaraAlbertGraph(4, 4, 10, 1, 2);
 //
