@@ -97,19 +97,21 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="105" column="53" lean-forward="true" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
+            <state relative-caret-position="152">
+              <caret line="102" column="50" lean-forward="true" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulation_week10_Erdo_DB_error_001">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-867" />
+            <state relative-caret-position="272">
+              <caret line="67" column="100" lean-forward="true" selection-start-line="67" selection-start-column="100" selection-end-line="67" selection-end-column="100" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -244,7 +246,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558263772652" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558264133524" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -293,18 +295,18 @@
       <workItem from="1556445806492" duration="9504000" />
       <workItem from="1556884277441" duration="10237000" />
       <workItem from="1557470392050" duration="9013000" />
-      <workItem from="1558262389493" duration="1411000" />
+      <workItem from="1558262389493" duration="1664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43795000" />
+    <option name="totallyTimeSpent" value="44048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2859304" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2859304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -313,7 +315,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35188216" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30605564" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -403,16 +405,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
+    <entry file="file://$PROJECT_DIR$/simulation_week10_Erdo_DB_error_001">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="105" column="53" lean-forward="true" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
+        <state relative-caret-position="272">
+          <caret line="67" column="100" lean-forward="true" selection-start-line="67" selection-start-column="100" selection-end-line="67" selection-end-column="100" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/simulation_week10_Erdo_DB_error_001">
+    <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-867" />
+        <state relative-caret-position="152">
+          <caret line="102" column="50" lean-forward="true" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
+        </state>
       </provider>
     </entry>
   </component>

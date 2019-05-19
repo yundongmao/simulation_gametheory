@@ -98,7 +98,7 @@ public class SettingHandle {
                         setting.runTest();
                         totalsuccess+=setting.getSuccessTimes();
                         if(i%10 == 9){
-                            jsonObject.put("fixation_prob",totalsuccess/((i+1)/10.0*numberOfGraphs*1.0));
+                            jsonObject.put("fixation_prob",totalsuccess/((i+1)*testTimes*1.0));
                             jsonObject.put("type","ErdoRandomGraph");
                             jsonObject.put("p",p);
                             jsonObject.put("init_mutant_num",1);
@@ -108,7 +108,7 @@ public class SettingHandle {
                             jsonObject.put("total_success_times",totalsuccess);
                             jsonObject.put("times",i*testTimes);
                             FileUtil.writeStringToFile("simulation_week10_Erdo_DB_error_001", true,jsonObject.toJSONString()+"\n");
-                            System.out.println("N: "+N+", fixation prob: "+totalsuccess/((i+1)/10.0*numberOfGraphs*1.0));
+                            System.out.println("N: "+N+", fixation prob: "+totalsuccess/((i+1)*testTimes*1.0));
                         }
 
                     }
