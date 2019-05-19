@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="035b0d92-3421-4464-8749-90b69d7f2839" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/GAME_THEORY/SettingHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GAME_THEORY/SettingHandle.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,48 +17,41 @@
         <counts>
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.39" value="1" />
           <entry key="project.open.time.40" value="1" />
           <entry key="project.open.time.53" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="5" value="2" />
           <entry key="java" value="9" />
+          <entry key="simulation_week10_Erdo_DB_error_001" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="9" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="545" />
+          <entry key="java" value="652" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="545" />
+          <entry key="JAVA" value="652" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/FileUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/utils/RandomUtil.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -106,12 +97,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
+            <state relative-caret-position="101">
+              <caret line="105" column="53" lean-forward="true" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/simulation_week10_Erdo_DB_error_001">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-867" />
           </provider>
         </entry>
       </file>
@@ -163,9 +161,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="68" />
-    <option name="y" value="16" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-13" />
+    <option name="y" value="19" />
     <option name="width" value="1346" />
     <option name="height" value="689" />
   </component>
@@ -175,6 +173,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,14 +239,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558082827208" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558263772652" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -295,17 +293,18 @@
       <workItem from="1556445806492" duration="9504000" />
       <workItem from="1556884277441" duration="10237000" />
       <workItem from="1557470392050" duration="9013000" />
+      <workItem from="1558262389493" duration="1411000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42384000" />
+    <option name="totallyTimeSpent" value="43795000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="68" y="16" width="1346" height="689" extended-state="0" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28926906" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2859304" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -314,7 +313,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37589929" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35188216" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -406,9 +405,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/GAME_THEORY/SettingHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="108" column="24" selection-start-line="108" selection-start-column="24" selection-end-line="108" selection-end-column="24" />
+        <state relative-caret-position="101">
+          <caret line="105" column="53" lean-forward="true" selection-start-line="105" selection-start-column="53" selection-end-line="105" selection-end-column="53" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulation_week10_Erdo_DB_error_001">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-867" />
       </provider>
     </entry>
   </component>
