@@ -2,255 +2,287 @@ package GAME_THEORY;
 
 import GAME_THEORY.Graphs.Graph;
 import GAME_THEORY.Graphs.GraphGeneral;
-import GAME_THEORY.utils.RandomUtil;
+import GAME_THEORY.enums.ProcessType;
+import GAME_THEORY.utils.FileUtil;
+import GAME_THEORY.utils.StringUtil;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.TransferQueue;
 
-public class GraphHandle {
-    private static Random random = new Random(System.currentTimeMillis());
+public class SettingHandle {
+    private static List settings = null;
+    private static int index = 0;
+    private static int i = 0;
 
-    public static void generateRamdomGraphs() {
-
+    public static void initAllSetting(String setting_path) {
+        if (StringUtil.isNullorEmpty(setting_path)) {
+            return;
+        }
+        settings = new ArrayList<Setting>();
     }
 
-    /**
-     * @param p the probability of an edge exiting
-     * @param N the number of the nodes
-     * @return class of the graph
-     */
-    public static Graph generateErdoRandomGraph(double p, int N, int mutantnum, double reward) {
-        List<List<Double>> adjaMatrix = new ArrayList<>();
-        for (int j = 0; j < N; j++) {
-            List<Double> tempList = new ArrayList<>();
-            double rowsum = 0;
-            for (int k = 0; k < N; k++) {
-                if (k == j) {
-                    tempList.add(0.0);
-                } else {
-                    tempList.add(random.nextDouble() <= p ? 1.0 : 0.0);
-                    rowsum += tempList.get(k);
-                }
-            }
-            if (rowsum == 0) {
-                tempList.set(j, 1.0);
-                rowsum = 1.0;
-            }
-            for (int k = 0; k < N; k++) {
-                tempList.set(k, tempList.get(k) / rowsum);
-            }
-
-            adjaMatrix.add(tempList);
-        }
-        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
-        return graph;
+    public static void generateDefaultSetting() {
+        settings = new ArrayList<Setting>();
     }
 
-    public static Graph generateErdoRandomGraphUndirect(double p, int N, int mutantnum, double reward) {
-        List<List<Double>> adjaMatrix = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
-            adjaMatrix.add(tempList);
-        }
-
-
-        for (int j = 0; j < N; j++) {
-            for (int k = j + 1; k < N; k++) {
-                double temp = random.nextDouble() <= p ? 1.0 : 0.0;
-                adjaMatrix.get(j).set(k, temp);
-                adjaMatrix.get(k).set(j, temp);
-            }
-        }
-        GraphGeneral.normaliseRow(adjaMatrix);
-        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
-        return graph;
+    public synchronized static Setting readSetting() {
+        return new Setting(null, 100, ProcessType.BD);
     }
 
-
-    /**
-     * @param N         node number
-     * @param K         should be even
-     * @param B         probability rewrite the right most link
-     * @param mutantnum init mutant number
-     * @param reward    mutant reward
-     * @return
-     */
-    public static Graph generateWattsStrogatzGraph(int N, int K, double B, int mutantnum, double reward) {
-        if (K % 2 == 1) {
-            System.out.println("K should be even not " + K);
-            return null;
-        }
-        List<List<Double>> adjaMatrix = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            List<Double> tempList = new ArrayList<>();
-            for (int j = 0; j < N; j++) {
-                if (j == i) {
-                    tempList.add(0.0);
-                } else if (j > i) {
-                    if (j - i <= K / 2 || i + N - j <= K / 2) {
-                        tempList.add(1.0);
-                    } else {
-                        tempList.add(0.0);
-                    }
-                } else {
-                    if (i - j <= K / 2 || j + N - i <= K / 2) {
-                        tempList.add(1.0);
-                    } else {
-                        tempList.add(0.0);
-                    }
-                }
-            }
-            adjaMatrix.add(tempList);
-        }
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (j > i) {
-                    if (j - i <= K / 2) {
-                        if (random.nextDouble() <= B) {
-                            adjaMatrix.get(i).set(j, 0.0);
-                            while (true) {
-                                int temp = random.nextInt(N);
-                                if (temp == i) {
-                                    continue;
-                                }
-                                if (adjaMatrix.get(i).get(temp) == 1.0) {
-                                    continue;
-                                }
-                                adjaMatrix.get(i).set(temp, 1.0);
-                                break;
-                            }
-                        }
-                    }
-                } else if (j < i) {
-                    if (j + N - i <= K / 2) {
-                        if (random.nextDouble() <= B) {
-                            adjaMatrix.get(i).set(j, 0.0);
-                            while (true) {
-                                int temp = random.nextInt(N);
-                                if (temp == i) {
-                                    continue;
-                                }
-                                if (adjaMatrix.get(i).get(temp) == 1.0) {
-                                    continue;
-                                }
-                                adjaMatrix.get(i).set(temp, 1.0);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        GraphGeneral.normaliseRow(adjaMatrix);
-        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
-        return graph;
+    public synchronized static void test(String name) {
+        System.out.println(name + " " + i++);
     }
 
-    /**
-     * @param N         node number
-     * @param K         should be even
-     * @param B         probability rewrite the right most link
-     * @param mutantnum init mutant number
-     * @param reward    mutant reward
-     * @return
-     */
-    public static Graph generateWattsStrogatzGraphUndirect(int N, int K, double B, int mutantnum, double reward) {
-        if (K % 2 == 1) {
-            System.out.println("K should be even not " + K);
-            return null;
+    public static Graph generateFromJson(String jsonstr) {
+        JSONObject jsonObject = JSONObject.parseObject(jsonstr);
+        String type = jsonObject.getString("type");
+        if ("general".equals(type)) {
+            GraphGeneral.generateFromJson(jsonstr);
         }
-        List<List<Double>> adjaMatrix = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
-            adjaMatrix.add(tempList);
-        }
-
-        for (int i = 0; i < N; i++) {
-            for (int j = 1; j < K/2+1; j++) {
-                adjaMatrix.get(i).set((i+j)%N,1.0);
-                adjaMatrix.get((i+j)%N).set(i,1.0);
-            }
-        }
-        for (int i = 0; i < N; i++) {
-            for (int j = 1; j < K/2+1; j++) {
-                if (random.nextDouble() <= B) {
-                    adjaMatrix.get(i).set((i+j)%N, 0.0);
-                    adjaMatrix.get((i+j)%N).set(i, 0.0);
-                    while (true) {
-                        int temp = random.nextInt(N);
-                        if (temp == i) {
-                            continue;
-                        }
-                        if (adjaMatrix.get(i).get(temp) == 1.0) {
-                            continue;
-                        }
-                        adjaMatrix.get(i).set(temp, 1.0);
-                        adjaMatrix.get(temp).set(i, 1.0);
-                        break;
-                    }
-                }
-            }
-        }
-
-        GraphGeneral.normaliseRow(adjaMatrix);
-        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
-        return graph;
+        return null;
     }
-
-
-    /**
-     * @param initNodes
-     * @param outDegrees
-     * @param N
-     * @param mutantnum
-     * @param reward
-     * @return
-     */
-    public static Graph generateBaraAlbertGraph(int initNodes, int outDegrees, int N, int mutantnum, double reward) {
-        List<List<Double>> adjaMatrix = new ArrayList<>();
-        for (int i = 0; i < N; i++) {
-            List<Double> tempList = new ArrayList<>(Collections.nCopies(N, 0.0));
-            adjaMatrix.add(tempList);
-        }
-        double[] sumList = new double[N];
-        for (int i = 0; i < initNodes - 1; i++) {
-            adjaMatrix.get(i).set(i + 1, 1.0);
-            adjaMatrix.get(i + 1).set(i, 1.0);
-            sumList[i] += 1;
-            sumList[i + 1] += 1;
-        }
-
-
-        for (int i = initNodes; i < N; i++) {
-            for (int j = 0; j < outDegrees; j++) {
-                int index = RandomUtil.randomChooseIndexDepValue(sumList,i);
-                if (adjaMatrix.get(i).get(index) != 0) {
-                    j -= 1;
-                    continue;
-                }
-                adjaMatrix.get(i).set(index, 1.0);
-                adjaMatrix.get(index).set(i, 1.0);
-                sumList[i] += 1;
-                sumList[index] += 1;
-            }
-        }
-
-        GraphGeneral.normaliseRow(adjaMatrix);
-        Graph graph = new GraphGeneral(mutantnum, reward, N, adjaMatrix);
-
-        return graph;
-    }
-
-    public static void generateGraphs(String settting_path) {
-
-    }
-
 
     public static void main(String[] args) {
-//        System.out.println(((GraphGeneral)generateErdoRandomGraph(0.5,10,1,2.0)).getAdjaMatrix());
-//        System.out.println(((GraphGeneral)generateWattsStrogatzGraph(10,4,0.5,1,2.0)).getAdjaMatrix());
-        System.out.println(((GraphGeneral) generateBaraAlbertGraph(2, 2, 10, 1, 2.0)).getAdjaMatrix());
+        Graph graph = null;
+        JSONObject jsonObject = new JSONObject();
+        for(int pi=1;pi<11;pi++){
+            double p = pi/10.0;
+            for(int r=50;r<51;r++){
+                for(int N = 6;N<51;N+=1){
+                    System.out.println(N+" size graph");
+                    int totalsuccess = 0;
+                    int testTimes = 1000;
+                    int numberOfGraphs = 1000;
+                    for(int i=0;i<numberOfGraphs;i++){
+                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+                        if(!graph.isConnected()){
+                            i--;
+                            continue;
+                        }
+//                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+//                        setting.runTest();
+//                        totalsuccess+=setting.getSuccessTimes();
+                        FileUtil.writeStringToFile("simulation_Erdo_graph_000", true,graph.toJSONString()+"\n");
+
+                    }
+//                    jsonObject.put("fixation_prob",totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                    jsonObject.put("type","ErdoRandomGraph");
+//                    jsonObject.put("p",p);
+//                    jsonObject.put("init_mutant_num",1);
+//                    jsonObject.put("reward",r/10.0);
+//                    jsonObject.put("size",N);
+//                    jsonObject.put("total_test",testTimes*numberOfGraphs*1.0);
+//                    jsonObject.put("total_success_times",totalsuccess);
+//                    FileUtil.writeStringToFile("simulation_week8_Erdo_DB_001_p0.5", true,jsonObject.toJSONString()+"\n");
+//                    System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+                }
+            }
+        }
+
+//        JSONObject jsonObject = new JSONObject();
+//        for(int pi=5;pi<6;pi++){
+//            double p = pi/10.0;
+//            for(int r=50;r<51;r++){
+//                for(int N = 30;N<31;N+=1){
+//                    System.out.println(N+" size graph");
+//                    int totalsuccess = 0;
+//                    int testTimes = 10;
+//                    int numberOfGraphs = 10000;
+//                    for(int i=0;i<numberOfGraphs;i++){
+//                        graph = GraphHandle.generateErdoRandomGraphUndirect(p, N, 1, r/10.0);
+//                        if(!graph.isConnected()){
+//                            i--;
+//                            continue;
+//                        }
+//                        Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+//                        setting.runTest();
+//                        totalsuccess+=setting.getSuccessTimes();
+//                        if(i%10 == 9){
+//                            jsonObject.put("fixation_prob",totalsuccess/((i+1)*testTimes*1.0));
+//                            jsonObject.put("type","ErdoRandomGraph");
+//                            jsonObject.put("p",p);
+//                            jsonObject.put("init_mutant_num",1);
+//                            jsonObject.put("reward",r/10.0);
+//                            jsonObject.put("size",N);
+//                            jsonObject.put("total_test",testTimes*numberOfGraphs*1.0);
+//                            jsonObject.put("total_success_times",totalsuccess);
+//                            jsonObject.put("times",i*testTimes);
+//                            FileUtil.writeStringToFile("simulation_week10_Erdo_DB_error_001", true,jsonObject.toJSONString()+"\n");
+//                            System.out.println("N: "+N+", fixation prob: "+totalsuccess/((i+1)*testTimes*1.0));
+//                        }
+//
+//                    }
+//
+//                }
+//            }
+//        }
+
+
+
+//        graph = GraphHandle.generateErdoRandomGraphUndirect(0.5, 10, 1, 2.0);
+//
+//        JSONObject jsonObject = new JSONObject();
+//        for (int N = 10; N < 51; N+=1) {
+//            System.out.println(N + " size graph");
+//            int testTimes = 1000;
+//            int numberOfGraphs = 1000;
+//            for (int r = 50; r < 51; r++) {
+//                for (int K = 4; K < N/2; K+=2) {
+//                    System.out.println("K: "+K);
+//                    for(int Bi=8;Bi<9;Bi++) {
+//                        double B = Bi/10.0;
+//                        int totalsuccess = 0;
+//                        for (int i = 0; i < numberOfGraphs; i++) {
+//                            graph = GraphHandle.generateWattsStrogatzGraphUndirect(N, K, B, 1, r/10.0);
+//                            if (!graph.isConnected()) {
+//                                i--;
+//                                continue;
+//                            }
+////                            Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+////                            setting.runTest();
+////                            totalsuccess += setting.getSuccessTimes();
+//                            FileUtil.writeStringToFile("simulation_WattsStrogatz_graph_000", true, graph.toJSONString() + "\n");
+//                        }
+////                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
+////                        jsonObject.put("type", "WattsStrogatz");
+////                        jsonObject.put("B", B);
+////                        jsonObject.put("K", K);
+////                        jsonObject.put("init_mutant_num", 1);
+////                        jsonObject.put("reward", r / 10.0);
+////                        jsonObject.put("size", N);
+////                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
+////                        jsonObject.put("total_success_times", totalsuccess);
+////                        FileUtil.writeStringToFile("simulation_WattsStrogatz_week10_DB_000", true, jsonObject.toJSONString() + "\n");
+////                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                    }
+//                }
+//            }
+//        }
+
+//
+//        JSONObject jsonObject = new JSONObject();
+//        for (int initNode = 2; initNode < 3; initNode++) {
+//            for (int N = 110; N < 201; N+=20) {
+//                int testTimes = 1000;
+//                int numberOfGraphs = 1000;
+//                System.out.println(N + " size graph");
+//                for (int r = 50; r < 51; r++) {
+//                    for (int outD = 4; outD < 50; outD++) {
+//                        int totalsuccess = 0;
+//                        for (int i = 0; i < numberOfGraphs; i++) {
+//                            graph = GraphHandle.generateBaraAlbertGraph(outD, outD, N, 1, r/10.0);
+//                            if (!graph.isConnected()) {
+//                                i--;
+//                                continue;
+//                            }
+//                            Setting setting = new Setting(graph, testTimes, ProcessType.BD);
+//                            setting.runTest();
+//                            totalsuccess += setting.getSuccessTimes();
+//                        }
+//                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
+//                        jsonObject.put("type", "WattsStrogatz");
+//                        jsonObject.put("outDegree", outD);
+//                        jsonObject.put("initNode", outD);
+//                        jsonObject.put("init_mutant_num", 1);
+//                        jsonObject.put("reward", r / 10.0);
+//                        jsonObject.put("size", N);
+//                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
+//                        jsonObject.put("total_success_times", totalsuccess);
+//                        FileUtil.writeStringToFile("simulation_BaraAlbert_week10_BD_004", true, jsonObject.toJSONString() + "\n");
+//                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                    }
+//                }
+//            }
+//        }
+
+
+//        JSONObject jsonObject = new JSONObject();
+//        for (int initNode = 2; initNode < 3; initNode++) {
+//            for (int N = 10; N < 50; N+=1) {
+//                int testTimes = 1000;
+//                int numberOfGraphs = 1000;
+//                System.out.println(N + " size graph");
+//                for (int r = 50; r < 51; r++) {
+//                    for (int outD = 4; outD < N; outD++) {
+//                        int totalsuccess = 0;
+//                        for (int i = 0; i < numberOfGraphs; i++) {
+//                            graph = GraphHandle.generateBaraAlbertGraph(outD, outD, N, 1, r/10.0);
+//
+//                            if (!graph.isConnected()) {
+//                                i--;
+//                                continue;
+//                            }
+//                            FileUtil.writeStringToFile("simulation_BaraAlbert_week10_graph_000", true, graph.toJSONString() + "\n");
+////                            Setting setting = new Setting(graph, testTimes, ProcessType.BD);
+////                            setting.runTest();
+////                            totalsuccess += setting.getSuccessTimes();
+//                        }
+////                        jsonObject.put("fixation_prob", totalsuccess / (testTimes*numberOfGraphs*1.0));
+////                        jsonObject.put("type", "WattsStrogatz");
+////                        jsonObject.put("outDegree", outD);
+////                        jsonObject.put("initNode", outD);
+////                        jsonObject.put("init_mutant_num", 1);
+////                        jsonObject.put("reward", r / 10.0);
+////                        jsonObject.put("size", N);
+////                        jsonObject.put("total_test", testTimes*numberOfGraphs*1.0);
+////                        jsonObject.put("total_success_times", totalsuccess);
+////                        FileUtil.writeStringToFile("simulation_BaraAlbert_week10_BD_graph_004", true, jsonObject.toJSONString() + "\n");
+//
+////                        System.out.println("N: "+N+", fixation prob: "+totalsuccess/(testTimes*numberOfGraphs*1.0));
+//                    }
+//                }
+//            }
+//        }
+
+
+
+//        graph = GraphHandle.generateBaraAlbertGraph(4, 4, 10, 1, 2);
+//
+//        System.out.println(((GraphGeneral) graph).getAdjaMatrix());
+//        graph= GraphHandle.generateBaraAlbertGraph(2,3,10,1,2.0);
+//                    System.out.println(((GraphGeneral) graph).getAdjaMatrix());
+
+//        System.out.println(((GraphGeneral)graph).getAdjaMatrix());
+//        System.out.println(graph.toJSONString());
+//        System.out.println("asdfasdf");
     }
+
+    public static double calculateAveClusteringCoefficient(GraphGeneral graphGeneral){
+        double totalScore = 0;
+        for(int i=0;i<graphGeneral.getAdjaMatrix().size();i++){
+            totalScore += calculateLocalClusteringCoefficient(graphGeneral,i);
+        }
+        return totalScore/(graphGeneral.getAdjaMatrix().size()*1.0);
+    }
+
+    public static double calculateLocalClusteringCoefficient(GraphGeneral graph,int node){
+        List<List<Double>> matrix = graph.getAdjaMatrix();
+        int neighbours = 0;
+        List<Integer> nodeList = new ArrayList<>();
+        for(int j=0;j<matrix.size();j++){
+            if(matrix.get(node).get(j)>0){
+                neighbours++;
+                nodeList.add(j);
+            }
+        }
+        int totalEdges = 0;
+        for(int i=0;i<nodeList.size();i++) {
+            for (int j = i+1; j<nodeList.size(); j++) {
+                if(matrix.get(i).get(j)>0){
+                    totalEdges++;
+                }
+            }
+        }
+
+        return totalEdges/(neighbours*(neighbours-1)/2.0*1.0);
+
+    }
+
+
+
+
 }
