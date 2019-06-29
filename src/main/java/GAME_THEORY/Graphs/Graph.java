@@ -41,6 +41,15 @@ public abstract class Graph{
     //we just casually choose the value 2.0 for the mutant reward
     //r is the reward of the mutant
     protected double r = 2.0;
+
+    public int getN() {
+        return N;
+    }
+
+    public void setN(int n) {
+        N = n;
+    }
+
     //graph size
     protected int N = 0;
 
