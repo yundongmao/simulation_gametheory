@@ -255,6 +255,51 @@ public class SettingHandle {
 //    }
 
 
+    public static void main(String[] args) {
+
+        int testTimes = 1000;
+        try {
+            InputStreamReader reader = new InputStreamReader(
+                    new FileInputStream("../../project/data/simulation_WattsStrogatz_graph_000"));
+            BufferedReader br = new BufferedReader(reader);
+            String line = br.readLine();
+            int count = 0;
+            while (line != null) {
+                count++;
+
+                line = br.readLine();
+                JSONObject jsonObject = new JSONObject();
+                GraphGeneral graph = GraphGeneral.generateFromJson(line);
+                int N = graph.getN();
+                int totalsuccess = 0;
+
+
+                Setting setting = new Setting(graph, testTimes, ProcessType.DB);
+                setting.runTest();
+                totalsuccess += setting.getSuccessTimes();
+//                System.out.println(calculateAveClusteringCoefficient(graph));
+                jsonObject.put("average_clustering_coefficient", calculateAveClusteringCoefficient(graph));
+                jsonObject.put("fixation_prob", totalsuccess / (testTimes * 1.0));
+                jsonObject.put("type", "WattsGraph");
+                jsonObject.put("init_mutant_num", 1);
+                jsonObject.put("size", N);
+                jsonObject.put("total_test", testTimes * 1.0);
+                jsonObject.put("total_success_times", totalsuccess);
+                jsonObject.put("ave_degree", calculateAveDegree(graph));
+
+                FileUtil.writeStringToFile("simulation_ave_clustering_coefficient_Watts_DB_001", true, jsonObject.toJSONString() + "\n");
+                if (count % 100 == 0) {
+                    System.out.println("N: " + N + ", fixation prob: " + totalsuccess / (testTimes * 1.0));
+                }
+            }
+            br.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+    }
+
 //    public static void main(String[] args) {
 //
 //        int testTimes = 1000;
@@ -270,25 +315,11 @@ public class SettingHandle {
 //                line = br.readLine();
 //                JSONObject jsonObject = new JSONObject();
 //                GraphGeneral graph = GraphGeneral.generateFromJson(line);
-//                int N = graph.getN();
-////                System.out.println(graph.getN() + " size graph");
-//                int totalsuccess = 0;
 //
 //
-//                Setting setting = new Setting(graph, testTimes, ProcessType.DB);
-//                setting.runTest();
-//                totalsuccess += setting.getSuccessTimes();
-////                System.out.println(calculateAveClusteringCoefficient(graph));
-//                jsonObject.put("average_clustering_coefficient", calculateAveClusteringCoefficient(graph));
-//                jsonObject.put("fixation_prob", totalsuccess / (testTimes * 1.0));
-//                jsonObject.put("type", "ErdoRandomGraph");
-//                jsonObject.put("init_mutant_num", 1);
-//                jsonObject.put("size", N);
-//                jsonObject.put("total_test", testTimes * 1.0);
-//                jsonObject.put("total_success_times", totalsuccess);
-//                FileUtil.writeStringToFile("simulation_ave_clustering_coefficient_Erdo_DB_001", true, jsonObject.toJSONString() + "\n");
-//                if (count % 100 == 0) {
-//                    System.out.println("N: " + N + ", fixation prob: " + totalsuccess / (testTimes * 1.0));
+//                FileUtil.writeStringToFile("simulation_ave_degree_Erdo_DB_000", true, ""+calculateAveDegree(graph) + "\n");
+//                if (count % 1000 == 0) {
+//                    System.out.println(count);
 //                }
 //            }
 //            br.close();
@@ -298,36 +329,6 @@ public class SettingHandle {
 //
 //
 //    }
-
-    public static void main(String[] args) {
-
-        int testTimes = 1000;
-        try {
-            InputStreamReader reader = new InputStreamReader(
-                    new FileInputStream("../../project/data/simulation_Erdo_graph_000"));
-            BufferedReader br = new BufferedReader(reader);
-            String line = br.readLine();
-            int count = 0;
-            while (line != null) {
-                count++;
-
-                line = br.readLine();
-                JSONObject jsonObject = new JSONObject();
-                GraphGeneral graph = GraphGeneral.generateFromJson(line);
-
-
-                FileUtil.writeStringToFile("simulation_ave_degree_Erdo_DB_000", true, ""+calculateAveDegree(graph) + "\n");
-                if (count % 1000 == 0) {
-                    System.out.println(count);
-                }
-            }
-            br.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-
-
-    }
 
     public static double calculateAveDegree(GraphGeneral graphGeneral){
         List<List<Double>> matrix = graphGeneral.getAdjaMatrix();
